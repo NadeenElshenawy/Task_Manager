@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster Settings - Full Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0fafa; }
+        .active-tab { background-color: #00a8a8 !important; color: white !important; }
+        .active-tab svg { color: white !important; }
+        /* Toggle Switch Animation */
+        .toggle-dot { transition: all 0.3s ease-in-out; }
+        input:checked ~ .toggle-bg { background-color: #00a8a8; }
+        input:checked ~ .toggle-dot { transform: translateX(100%); }
+    </style>
+</head>
+<body class="text-gray-700 min-h-screen">
+
+    <header class="flex items-center justify-between px-6 md:px-12 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="flex items-center gap-2 text-[#00a8a8] font-bold text-xl">
+            <div class="w-8 h-8 rounded-full border-2 border-[#00a8a8] flex items-center justify-center">
+                <div class="w-2 h-2 bg-[#00a8a8] rounded-full"></div>
+            </div>
+            TaskMaster
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
+            <span>Dashboard</span><span>Courses</span>
+            <div class="flex items-center gap-4 border-l pl-4">
+                <svg class="w-5 h-5 cursor-pointer hover:text-[#00a8a8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                <svg class="w-5 h-5 cursor-pointer hover:text-[#00a8a8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto mt-8 px-4 md:px-8 pb-20">
+        <div class="mb-8">
+            <button class="text-xs text-gray-400 flex items-center gap-1 mb-2 hover:text-[#00a8a8]">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg> Back to Dashboard
+            </button>
+            <h1 class="text-3xl font-bold text-[#1a3a3a]">Settings</h1>
+            <p class="text-sm text-gray-400">Manage your account and preferences</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+            
+            <div class="w-full md:w-64 shrink-0 space-y-4">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <button id="btn-account" onclick="showTab('account')" class="tab-btn active-tab w-full flex items-center gap-3 px-5 py-4 text-sm font-medium transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Account Info
+                    </button>
+                    <button id="btn-notifications" onclick="showTab('notifications')" class="tab-btn w-full flex items-center gap-3 px-5 py-4 text-gray-400 hover:bg-gray-50 text-sm font-medium border-y border-gray-50 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        Notifications
+                    </button>
+                    <button id="btn-appearance" onclick="showTab('appearance')" class="tab-btn w-full flex items-center gap-3 px-5 py-4 text-gray-400 hover:bg-gray-50 text-sm font-medium transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0-7 7c0 1.5.5 3 1.3 4.3L12 22l5.7-8.7c.8-1.3 1.3-2.8 1.3-4.3a7 7 0 0 0-7-7z"/></svg>
+                        Appearance
+                    </button>
+                </div>
+                
+                <button class="w-full bg-[#fff5f5] text-[#ff5c5c] flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold border border-[#ffebeb] hover:bg-[#ffebeb] transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                </button>
+            </div>
+
+            <div class="flex-1 w-full">
+                
+                <div id="content-account" class="tab-content bg-white rounded-[2rem] p-6 md:p-10 shadow-sm border border-gray-50">
+                    <h2 class="text-xl font-bold text-[#1a3a3a] mb-8">Account Information</h2>
+                    <div class="space-y-8">
+                        <div>
+                            <p class="text-[10px] uppercase font-bold text-gray-400 mb-4 tracking-widest">Profile Picture</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-[#00d1d1] rounded-full flex items-center justify-center text-white text-xl font-bold">SJ</div>
+                                <button class="bg-[#f3f4f6] px-5 py-2 rounded-lg text-xs font-bold text-gray-600">Change Photo</button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2">
+                                <label class="flex items-center gap-2 text-xs font-bold text-gray-500 mb-2"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Full Name</label>
+                                <input type="text" value="Sarah Johnson" class="w-full p-3 bg-[#f9fafb] border border-gray-100 rounded-xl outline-none focus:ring-1 focus:ring-[#00a8a8]">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="flex items-center gap-2 text-xs font-bold text-gray-500 mb-2"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email Address</label>
+                                <input type="email" value="sarah.johnson@university.edu" class="w-full p-3 bg-[#f9fafb] border border-gray-100 rounded-xl outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-2">University</label>
+                                <input type="text" value="State University" class="w-full p-3 bg-[#f9fafb] border border-gray-100 rounded-xl outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-2">Graduation Year</label>
+                                <input type="text" value="2026" class="w-full p-3 bg-[#f9fafb] border border-gray-100 rounded-xl outline-none">
+                            </div>
+                            <div>
+                                <label class="flex items-center gap-2 text-xs font-bold text-gray-500 mb-2"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Password</label>
+                                <button class="bg-[#f3f4f6] px-5 py-2 rounded-lg text-xs font-bold text-gray-600">Change Password</button>
+                            </div>
+                        </div>
+                        <div class="pt-6 border-t border-gray-50">
+                            <button class="bg-[#00a8a8] text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg shadow-[#00a8a8]/20 flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg> Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-notifications" class="tab-content hidden bg-white rounded-[2rem] p-6 md:p-10 shadow-sm border border-gray-50">
+                    <h2 class="text-xl font-bold text-[#1a3a3a] mb-8">Notification Preferences</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-5 bg-[#fcfdfd] rounded-2xl border border-gray-50">
+                            <div>
+                                <h3 class="text-sm font-bold text-[#1a3a3a]">Email Notifications</h3>
+                                <p class="text-[11px] text-gray-400">Receive updates via email</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between p-5 bg-[#fcfdfd] rounded-2xl border border-gray-50">
+                            <div>
+                                <h3 class="text-sm font-bold text-[#1a3a3a]">Push Notifications</h3>
+                                <p class="text-[11px] text-gray-400">Get browser notifications</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between p-5 bg-[#fcfdfd] rounded-2xl border border-gray-50">
+                            <div>
+                                <h3 class="text-sm font-bold text-[#1a3a3a]">Task Reminders</h3>
+                                <p class="text-[11px] text-gray-400">Reminders for upcoming deadlines</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-gray-50">
+                        <button class="bg-[#00a8a8] text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg shadow-[#00a8a8]/20 flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg> Save Preferences</button>
+                    </div>
+                </div>
+
+                <div id="content-appearance" class="tab-content hidden bg-white rounded-[2rem] p-6 md:p-10 shadow-sm border border-gray-50">
+                    <h2 class="text-xl font-bold text-[#1a3a3a] mb-8">Appearance Settings</h2>
+                    
+                    <div class="mb-8">
+                        <p class="text-[10px] uppercase font-bold text-gray-400 mb-4 tracking-widest">Theme</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border-2 border-[#00a8a8] p-5 rounded-2xl bg-white flex items-center gap-4 cursor-pointer">
+                                <span class="text-xl">☀️</span>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800">Light Mode</p>
+                                    <p class="text-[10px] text-gray-400">Bright and clean interface for daytime use</p>
+                                </div>
+                            </div>
+                            <div class="border border-gray-100 p-5 rounded-2xl bg-gray-50 flex items-center gap-4 cursor-pointer hover:bg-white transition-all">
+                                <span class="text-xl">🌙</span>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800">Dark Mode</p>
+                                    <p class="text-[10px] text-gray-400">Easy on the eyes for late-night studying</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <p class="text-[10px] uppercase font-bold text-gray-400 mb-4 tracking-widest">Color Palette Preview</p>
+                        <div class="flex flex-wrap gap-3">
+                            <div class="h-10 px-6 rounded-lg bg-[#00a8a8] flex items-center justify-center text-[10px] text-white font-bold">Primary</div>
+                            <div class="h-10 px-6 rounded-lg bg-[#00bcd4] flex items-center justify-center text-[10px] text-white font-bold">Secondary</div>
+                            <div class="h-10 px-6 rounded-lg bg-[#ff6d00] flex items-center justify-center text-[10px] text-white font-bold">Accent</div>
+                            <div class="h-10 px-6 rounded-lg bg-gray-100 flex items-center justify-center text-[10px] text-gray-400 font-bold">Light</div>
+                            <div class="h-10 px-6 rounded-lg bg-[#1a1c23] flex items-center justify-center text-[10px] text-white font-bold">Dark</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 pt-4 border-t border-gray-50">
+                        <div class="flex items-center justify-between py-2">
+                            <div>
+                                <p class="text-sm font-bold text-[#1a3a3a]">Compact View</p>
+                                <p class="text-[10px] text-gray-400">Show more content in less space</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-[#00a8a8] after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-5"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between py-2">
+                            <div>
+                                <p class="text-sm font-bold text-[#1a3a3a]">Animations</p>
+                                <p class="text-[10px] text-gray-400">Enable smooth transitions and effects</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-[#00a8a8] after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-5"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 mt-4">
+                        <button class="bg-[#00a8a8] text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg shadow-[#00a8a8]/20 flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg> Save Appearance</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('text-gray-400');
+            });
+            document.getElementById('btn-' + tabName).classList.add('active-tab');
+            document.getElementById('btn-' + tabName).classList.remove('text-gray-400');
+        }
+    </script>
+</body>
+</html>
