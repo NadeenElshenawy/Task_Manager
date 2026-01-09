@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskMaster | Courses</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#14b8a6',
+            accent: '#f97316'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-br from-cyan-50 to-white min-h-screen text-gray-800">
+<!-- Navbar -->
+ <!-- ثابته ف كل بيدج -->
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+  <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 text-teal-600 font-bold text-xl">
+      <span class="w-8 h-8 rounded-full border-2 border-teal-500 flex items-center justify-center">
+        ◎
+      </span>
+      TaskMaster
+    </div>
+
+    <!-- Links -->
+    <div class="flex items-center gap-8 text-gray-600 font-medium">
+      <a href="#" class="hover:text-teal-600">Dashboard</a>
+      <a href="#" class="text-teal-600 font-semibold">Courses</a>
+    </div>
+
+    <!-- Icons -->
+    <div class="flex items-center gap-4">
+      <span class="text-xl cursor-pointer">⚙️</span>
+      <span class="relative text-xl cursor-pointer">
+        🔔
+        <span class="absolute -top-1 -right-1 w-2 h-2 bg-orange-500 rounded-full"></span>
+      </span>
+    </div>
+
+  </div>
+</nav>
+
+  <!-- Header -->
+   <header class="max-w-7xl mx-auto px-8 py-10 mt-6">
+    <h1 class="text-4xl font-bold">My Courses</h1>
+    <p class="text-gray-600 mt-2">
+      Manage your academic workload across all courses
+    </p>
+  </header>
+  <!-- Stats -->
+<section class="max-w-7xl mx-auto px-8">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-14">
+
+    <!-- Active Courses -->
+    <div class="bg-white rounded-2xl p-6 shadow flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center text-2xl text-teal-600">
+        📖
+      </div>
+      <div>
+        <p class="text-3xl font-bold">6</p>
+        <p class="text-gray-500">Active Courses</p>
+      </div>
+    </div>
+
+    <!-- Pending Tasks -->
+    <div class="bg-white rounded-2xl p-6 shadow flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-2xl text-orange-500">
+        ⏰
+      </div>
+      <div>
+        <p class="text-3xl font-bold">18</p>
+        <p class="text-gray-500">Pending Tasks</p>
+      </div>
+    </div>
+
+    <!-- Completed Tasks -->
+    <div class="bg-white rounded-2xl p-6 shadow flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-2xl text-green-600">
+        ✅
+      </div>
+      <div>
+        <p class="text-3xl font-bold">89</p>
+        <p class="text-gray-500">Completed Tasks</p>
+      </div>
+    </div>
+
+    <!-- Avg Grade -->
+    <div class="bg-white rounded-2xl p-6 shadow flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-2xl text-purple-600">
+        📈
+      </div>
+      <div>
+        <p class="text-3xl font-bold">91%</p>
+        <p class="text-gray-500">Avg. Grade</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Courses Cards -->
+  <section class="max-w-7xl mx-auto px-8 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+
+      <!-- Card 1 -->
+      <div class="w-full max-w-[360px] rounded-3xl bg-white shadow-xl overflow-hidden">
+        <div class="bg-green-500 p-5 text-white">
+          <h3 class="text-xl font-semibold">English Literature</h3>
+          <p class="text-sm opacity-90">👤 Dr. Emily Roberts</p>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-600">Current Grade</span>
+            <span class="text-xl font-semibold">A</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-1">
+            <div class="bg-green-500 h-2 rounded-full" style="width:94%"></div>
+          </div>
+          <p class="text-sm text-gray-500 mb-6">94%</p>
+
+          <div class="flex gap-4 mb-6">
+            <div class="flex-1 bg-green-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">2</p>
+              <p class="text-sm text-gray-600">Active Tasks</p>
+            </div>
+            <div class="flex-1 bg-gray-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">15</p>
+              <p class="text-sm text-gray-600">Completed</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button class="flex-1 py-3 rounded-2xl bg-gray-100">View Tasks</button>
+            <a href="tasks.html"
+              class="w-12 h-12 rounded-2xl bg-teal-500 text-white text-2xl flex items-center justify-center">+</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="w-full max-w-[360px] rounded-3xl bg-white shadow-xl overflow-hidden">
+        <div class="bg-orange-500 p-5 text-white">
+          <h3 class="text-xl font-semibold">General Chemistry</h3>
+          <p class="text-sm opacity-90">👤 Prof. Michael Brown</p>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-600">Current Grade</span>
+            <span class="text-xl font-semibold">B</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-1">
+            <div class="bg-orange-500 h-2 rounded-full" style="width:85%"></div>
+          </div>
+          <p class="text-sm text-gray-500 mb-6">85%</p>
+
+          <div class="flex gap-4 mb-6">
+            <div class="flex-1 bg-orange-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">5</p>
+              <p class="text-sm text-gray-600">Active Tasks</p>
+            </div>
+            <div class="flex-1 bg-gray-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">10</p>
+              <p class="text-sm text-gray-600">Completed</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button class="flex-1 py-3 rounded-2xl bg-gray-100">View Tasks</button>
+            <a href="tasks.html"
+              class="w-12 h-12 rounded-2xl bg-teal-500 text-white text-2xl flex items-center justify-center">+</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="w-full max-w-[360px] rounded-3xl bg-white shadow-xl overflow-hidden">
+        <div class="bg-blue-500 p-5 text-white">
+          <h3 class="text-xl font-semibold">Mathematics</h3>
+          <p class="text-sm opacity-90">👤 Dr. Mohamed Adel</p>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-600">Current Grade</span>
+            <span class="text-xl font-semibold">A-</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-1">
+            <div class="bg-blue-500 h-2 rounded-full" style="width:88%"></div>
+          </div>
+          <p class="text-sm text-gray-500 mb-6">88%</p>
+
+          <div class="flex gap-4 mb-6">
+            <div class="flex-1 bg-blue-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">3</p>
+              <p class="text-sm text-gray-600">Active Tasks</p>
+            </div>
+            <div class="flex-1 bg-gray-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">12</p>
+              <p class="text-sm text-gray-600">Completed</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button class="flex-1 py-3 rounded-2xl bg-gray-100">View Tasks</button>
+            <a href="tasks.html"
+              class="w-12 h-12 rounded-2xl bg-teal-500 text-white text-2xl flex items-center justify-center">+</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="w-full max-w-[360px] rounded-3xl bg-white shadow-xl overflow-hidden">
+        <div class="bg-purple-500 p-5 text-white">
+          <h3 class="text-xl font-semibold">History</h3>
+          <p class="text-sm opacity-90">👤 Dr. Sarah Lee</p>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-600">Current Grade</span>
+            <span class="text-xl font-semibold">B+</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-1">
+            <div class="bg-purple-500 h-2 rounded-full" style="width:82%"></div>
+          </div>
+          <p class="text-sm text-gray-500 mb-6">82%</p>
+
+          <div class="flex gap-4 mb-6">
+            <div class="flex-1 bg-purple-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">4</p>
+              <p class="text-sm text-gray-600">Active Tasks</p>
+            </div>
+            <div class="flex-1 bg-gray-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">9</p>
+              <p class="text-sm text-gray-600">Completed</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button class="flex-1 py-3 rounded-2xl bg-gray-100">View Tasks</button>
+            <a href="tasks.html"
+              class="w-12 h-12 rounded-2xl bg-teal-500 text-white text-2xl flex items-center justify-center">+</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="w-full max-w-[360px] rounded-3xl bg-white shadow-xl overflow-hidden">
+        <div class="bg-teal-500 p-5 text-white">
+          <h3 class="text-xl font-semibold">Physics</h3>
+          <p class="text-sm opacity-90">👤 Dr. Ahmed Hassan</p>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between mb-2">
+            <span class="text-gray-600">Current Grade</span>
+            <span class="text-xl font-semibold">A</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-1">
+            <div class="bg-teal-500 h-2 rounded-full" style="width:92%"></div>
+          </div>
+          <p class="text-sm text-gray-500 mb-6">92%</p>
+
+          <div class="flex gap-4 mb-6">
+            <div class="flex-1 bg-teal-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">5</p>
+              <p class="text-sm text-gray-600">Active Tasks</p>
+            </div>
+            <div class="flex-1 bg-gray-50 rounded-2xl p-4 text-center">
+              <p class="text-2xl font-semibold">8</p>
+              <p class="text-sm text-gray-600">Completed</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button class="flex-1 py-3 rounded-2xl bg-gray-100">View Tasks</button>
+            <a href="tasks.html"
+              class="w-12 h-12 rounded-2xl bg-teal-500 text-white text-2xl flex items-center justify-center">+</a>
+          </div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+<div class="w-full max-w-[360px] rounded-3xl bg-white shadow-xl overflow-hidden">
+  <div class="bg-rose-500 p-5 text-white">
+    <h3 class="text-xl font-semibold">Data Structures</h3>
+    <p class="text-sm opacity-90 flex items-center gap-1">
+      👤 Dr. Youssef Kamal
+    </p>
+  </div>
+
+  <div class="p-6">
+    <div class="flex justify-between items-center mb-2">
+      <span class="text-gray-600">Current Grade</span>
+      <span class="text-xl font-semibold">A-</span>
+    </div>
+
+    <div class="w-full bg-gray-200 rounded-full h-2 mb-1">
+      <div class="bg-rose-500 h-2 rounded-full" style="width:90%"></div>
+    </div>
+    <p class="text-sm text-gray-500 mb-6">90%</p>
+
+    <div class="flex gap-4 mb-6">
+      <div class="flex-1 bg-rose-50 rounded-2xl p-4 text-center">
+        <p class="text-2xl font-semibold">4</p>
+        <p class="text-sm text-gray-600">Active Tasks</p>
+      </div>
+      <div class="flex-1 bg-gray-50 rounded-2xl p-4 text-center">
+        <p class="text-2xl font-semibold">11</p>
+        <p class="text-sm text-gray-600">Completed</p>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button class="flex-1 py-3 rounded-2xl bg-gray-100 text-gray-700 font-medium">
+        View Tasks
+      </button>
+      <a href="tasks.html"
+        class="w-12 h-12 rounded-2xl bg-teal-500 text-white text-2xl flex items-center justify-center">
+        +
+      </a>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </section>
+<!-- Add New Course -->
+<div class="max-w-7xl mx-auto px-8 mt-16">
+  <div
+    class="w-full h-40 rounded-3xl border-2 border-dashed border-teal-200
+           bg-gradient-to-r from-cyan-100 via-teal-50 to-white
+           flex flex-col items-center justify-center text-gray-600
+           hover:border-teal-400 transition">
+
+    <span class="text-4xl mb-2">+</span>
+    <p class="text-lg font-medium">Add New Course</p>
+
+  </div>
+</div>
+<!-- Pro Tip -->
+<div class="max-w-7xl mx-auto px-8 mt-10 pb-20">
+  <div
+    class="rounded-3xl bg-gradient-to-r from-teal-500 to-cyan-500
+           text-white p-10 shadow-xl">
+
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-3xl">💡</span>
+      <h3 class="text-2xl font-semibold">Pro Tip</h3>
+    </div>
+
+    <p class="text-white/90 max-w-3xl mb-6 leading-relaxed">
+      Keep your course information updated to get accurate grade predictions
+      and better task prioritization. Add time estimates to tasks to help
+      balance your workload across all courses.
+    </p>
+
+    <button
+      class="px-8 py-3 bg-white text-teal-600 font-medium
+             rounded-2xl hover:bg-gray-100 transition">
+      Learn More
+    </button>
+
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-6">
+    © 2025 <span class="font-semibold text-primary">TaskMaster</span>. Built for students, by students.
+  </footer>
+
+</body>
+</html>
