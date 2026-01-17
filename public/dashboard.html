@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task Manager - Dashboard</title>
+</head>
+<body>
+    <input type="text" id="taskName" placeholder="Task Title">
+    
+    <button id="saveTaskButton">Add Task</button>
+
+    <script type="module">
+        // بنعمل import للدالة من الملف اللي كتبنا فيه الـ logic
+        import { createNewTask } from "../src/database/database-logic.js";
+
+        // بنضيف الـ Listener للزرار
+        document.getElementById("saveTaskButton").addEventListener("click", async () => {
+            const taskNameInput = document.getElementById("taskName").value;
+            
+            if(!taskNameInput) {
+                alert("Please enter a task name");
+                return;
+            }
+
+            const newTask = {
+                name: taskNameInput,
+                priority: "High", 
+                dueDate: "2025-01-01",
+                courseId: "math101"
+            };
+            
+            await createNewTask(newTask);
+            alert("Task Added Successfully!");
+            
+            // مسح الخانة بعد الإضافة
+            document.getElementById("taskName").value = "";
+        });
+    </script>
+</body>
+</html>

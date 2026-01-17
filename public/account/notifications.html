@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - Notifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* تصميم مخصص لمفتاح التبديل Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #00a8a8;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #00a8a8;
+        }
+    </style>
+</head>
+<body class="bg-[#f0f9f9] text-gray-700 min-h-screen">
+
+    <header class="flex items-center justify-between px-12 py-4 bg-white border-b border-gray-100">
+        <div class="flex items-center gap-2 text-[#00a8a8] font-bold text-xl">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+            </svg>
+            TaskMaster
+        </div>
+        <div class="flex items-center gap-8 text-sm font-medium text-gray-500">
+            <a href="#" class="hover:text-[#00a8a8]">Dashboard</a>
+            <a href="#" class="hover:text-[#00a8a8]">Courses</a>
+            <button class="hover:text-[#00a8a8]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+            <button class="hover:text-[#00a8a8]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto mt-10 px-8">
+        <a href="#" class="flex items-center text-xs text-gray-400 mb-6 hover:text-gray-600">
+            <span class="mr-2 text-[10px]">❮</span> Back to Dashboard
+        </a>
+
+        <h1 class="text-3xl font-bold text-gray-800 tracking-tight">Settings</h1>
+        <p class="text-sm text-gray-400 mt-1 mb-10">Manage your account and preferences</p>
+
+        <div class="flex gap-10 items-start">
+            
+            <div class="w-64 shrink-0">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]">
+                    <a href="account-info.html" class="w-full flex items-center gap-3 px-5 py-3.5 bg-[#00a8a8] text-white text-sm font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Account Info
+                    </a>
+                    <a href="notifications.html"class="w-full flex items-center gap-3 px-5 py-4 text-gray-400 hover:bg-gray-50 text-sm font-medium transition-colors border-b border-gray-50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        Notifications
+                    </a>
+                    <a href="appearance.html"class="w-full flex items-center gap-3 px-5 py-4 text-gray-400 hover:bg-gray-50 text-sm font-medium transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0-7 7c0 1.5.5 3 1.3 4.3L12 22l5.7-8.7c.8-1.3 1.3-2.8 1.3-4.3a7 7 0 0 0-7-7z"/></svg>
+                        Appearance
+                    </a>
+                </div>
+
+                <button class="w-full mt-6 flex items-center justify-center gap-3 py-3.5 bg-[#fff5f5] border border-red-50 text-red-500 rounded-2xl text-sm font-semibold hover:bg-red-50 transition-colors">
+                    <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                </button>
+            </div>
+
+            <div class="flex-1 bg-white rounded-[2rem] p-10 shadow-sm border border-gray-50 min-h-[500px]">
+                <h2 class="text-xl font-semibold text-gray-800 mb-10">Notification Preferences</h2>
+                
+                <div class="space-y-10">
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-700">Email Notifications</h3>
+                            <p class="text-xs text-gray-400 mt-1">Receive updates via email</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-700">Push Notifications</h3>
+                            <p class="text-xs text-gray-400 mt-1">Get browser notifications</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-700">Task Reminders</h3>
+                            <p class="text-xs text-gray-400 mt-1">Reminders for upcoming deadlines</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-700">Weekly Digest</h3>
+                            <p class="text-xs text-gray-400 mt-1">Summary of your week every Monday</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-700">Grade Updates</h3>
+                            <p class="text-xs text-gray-400 mt-1">Notifications when grades change</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00a8a8]"></div>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="mt-12">
+                    <button class="flex items-center gap-2 px-6 py-2.5 bg-[#00a8a8] text-white rounded-lg text-sm font-semibold hover:bg-[#008f8f] transition-all active:scale-95 shadow-md shadow-[#00a8a8]/20">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+                        Save Preferences
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
