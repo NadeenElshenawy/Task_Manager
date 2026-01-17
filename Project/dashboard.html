@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskMaster Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-cyan-100 via-cyan-50 to-white font-sans text-slate-800">
+
+<!-- Navbar -->
+<header class="bg-white/70 backdrop-blur border-b">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-full border-4 border-teal-500"></div>
+      <span class="font-semibold">TaskMaster</span>
+    </div>
+    <nav class="flex items-center gap-6 text-sm">
+      <a class="text-teal-600 font-medium" href="#">Dashboard</a>
+      <a class="text-slate-500" href="#">Courses</a>
+      <span>⚙️</span>
+      <span class="relative">🔔<span class="absolute -top-1 -right-1 w-2 h-2 bg-orange-500 rounded-full"></span></span>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+<!-- Greeting -->
+<section class="bg-gradient-to-r from-cyan-100 to-transparent rounded-2xl p-8">
+<section class="bg-gradient-to-r from-cyan-100 to-transparent rounded-2xl p-8">
+<section class="bg-cyan-50 rounded-2xl p-8">
+
+  <h1 class="text-3xl font-semibold">Hi, Sarah! 👋</h1>
+  <p class="text-slate-600 mt-1">Ready to conquer today? You have 3 tasks due today.</p>
+
+  <a  href="index.html"
+  class="mt-6 flex gap-3">
+    <input class="flex-1 px-5 py-4 rounded-xl border focus:ring-2 focus:ring-teal-400 outline-none" placeholder="Quick add a task... (e.g., 'Finish chemistry homework')" />
+    <button class="px-6 py-4 bg-teal-500 text-white rounded-xl hover:bg-teal-600">+ Add Task</button>
+  </a>
+</section>
+  <!-- Main Cards -->
+  <section class="grid grid-cols-3 gap-8 mb-12">
+
+    <!-- Upcoming Deadlines -->
+    <div class="bg-white rounded-2xl shadow p-6">
+      <h2 class="font-semibold text-slate-700 mb-4">Upcoming Deadlines</h2>
+
+      <div class="space-y-4">
+        <div class="p-4 rounded-xl border">
+          <div class="flex justify-between">
+            <h3 class="font-medium">Physics 101 - Lab Report</h3>
+            <span class="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">High</span>
+          </div>
+          <p class="text-sm text-slate-500">Physics 101</p>
+          <p class="text-xs text-slate-400">Dec 10, 2024</p>
+        </div>
+
+        <div class="p-4 rounded-xl border">
+          <h3 class="font-medium">Literature Essay Draft</h3>
+          <p class="text-sm text-slate-500">English 202</p>
+          <p class="text-xs text-slate-400">Dec 12, 2024</p>
+        </div>
+
+        <div class="p-4 rounded-xl border">
+          <h3 class="font-medium">Chemistry Final Exam</h3>
+          <p class="text-sm text-slate-500">Chem 110</p>
+          <p class="text-xs text-slate-400">Dec 16, 2024</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div class="bg-white rounded-2xl shadow p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-semibold text-slate-700">Today's Focus</h2>
+        <span class="text-xs bg-teal-100 text-teal-600 px-3 py-1 rounded-full">3 tasks</span>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-4 rounded-xl border border-teal-200 bg-teal-50">
+          <div class="flex justify-between">
+            <h3 class="font-medium">Complete Physics Lab Report</h3>
+            <input type="checkbox" />
+          </div>
+          <p class="text-sm text-slate-500">Physics 101 · 2 hours</p>
+          <span class="text-xs text-orange-600">⚠ High Priority</span>
+        </div>
+
+        <div class="p-4 rounded-xl border border-teal-200 bg-teal-50">
+          <div class="flex justify-between">
+            <h3 class="font-medium">Review Calculus Notes</h3>
+            <input type="checkbox" />
+          </div>
+          <p class="text-sm text-slate-500">Math 150 · 45 min</p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-teal-200 bg-teal-50">
+          <div class="flex justify-between">
+            <h3 class="font-medium">Read Chapter 5 - Literature</h3>
+            <input type="checkbox" />
+          </div>
+          <p class="text-sm text-slate-500">English 202 · 1 hour</p>
+        </div>
+
+        <button class="w-full border-2 border-dashed border-teal-300 rounded-xl py-3 text-teal-600">
+          + Add New Task
+        </button>
+      </div>
+    </div>
+
+    <!-- This Week -->
+    <div class="bg-white rounded-2xl shadow p-6">
+      <h1 class="font-semibold text-slate-700 mb-4">This Week</h1>
+      <div class="p-5 rounded-lg border border-slate-200">
+  Mon · 1 task
+</div>
+        <div class="bg-teal-500 text-white rounded-xl px-4 py-2 flex justify-between">
+          <span>Tue · Today</span>
+          <span class="text-xs bg-white/30 p-5 rounded-full">Current</span>
+        </div>
+          <div class="p-5 rounded-lg border border-slate-200">
+            web.3 tasks
+</div>
+
+  <div class="p-5 rounded-lg border border-slate-200">
+    Thu.0 tasks
+</div>
+         <div class="p-5 rounded-lg border border-slate-200">
+Fri · 0 tasks
+</div>
+<div class="p-4 rounded-lg border border-slate-200">
+Sun · 3 tasks
+</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Progress -->
+  <div class="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl p-6 text-white w-1/3 mb-12">
+    
+    <h3 class="font-semibold mb-2">This Week’s Progress</h3>
+    <p class="text-sm mb-3">Tasks Completed <span class="float-right">12/20</span></p>
+    <div class="h-2 bg-white/20 rounded-full">
+      <div class="h-2 w-3/5 bg-white rounded-full"></div>
+    </div>
+    <button class="mt-4 text-sm underline">View all courses →</button>
+  </div>
+
+  <!-- Active Courses -->
+  <section>
+    <h2 class="text-lg font-semibold mb-4">Active Courses</h2>
+
+    <div class="grid grid-cols-4 gap-6">
+      <div class="h-[150px] rounded-2xl bg-pink-500 text-white p-6">
+        <h3 class="font-semibold">Physics 101</h3>
+        <p class="text-sm mt-2">4 active tasks</p>
+      </div>
+
+      <div class="h-[150px] rounded-2xl bg-blue-500 text-white p-6">
+        <h3 class="font-semibold">Math 150</h3>
+        <p class="text-sm mt-2">3 active tasks</p>
+      </div>
+
+      <div class="h-[150px] rounded-2xl bg-emerald-500 text-white p-6">
+        <h3 class="font-semibold">English 202</h3>
+        <p class="text-sm mt-2">2 active tasks</p>
+      </div>
+
+      <div class="h-[150px] rounded-2xl bg-orange-500 text-white p-6">
+        <h3 class="font-semibold">Chem 110</h3>
+        <p class="text-sm mt-2">5 active tasks</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
+</body>
+
+</section>
+</main>
+</body>
+</html>
