@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskMaster | Courses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#14b8a6', accent: '#f97316' } } }
+    }
+  </script>
+</head>
+
+<body class="bg-gradient-to-br from-cyan-50 to-white min-h-screen text-gray-800">
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-teal-600 font-bold text-xl">
+        <span class="w-8 h-8 rounded-full border-2 border-teal-500 flex items-center justify-center">◎</span>
+        TaskMaster
+      </div>
+      <div class="flex items-center gap-8 text-gray-600 font-medium">
+        <a href="dashboard.html" class="hover:text-teal-600">Dashboard</a>
+        <a href="Courses Page UI.html" class="text-teal-600 font-semibold">Courses</a>
+      </div>
+      <div class="flex items-center gap-4 text-xl cursor-pointer">⚙️ 🔔</div>
+    </div>
+  </nav>
+
+  <header class="max-w-7xl mx-auto px-8 py-10 mt-6">
+    <h1 class="text-4xl font-bold">My Courses</h1>
+    <p class="text-gray-600 mt-2">Manage your academic workload across all courses</p>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-14">
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center text-2xl">📖</div>
+        <div><p id="stat-active-courses" class="text-3xl font-bold text-slate-800">0</p><p class="text-gray-500 text-sm">Active Courses</p></div>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-2xl">⏰</div>
+        <div><p id="stat-pending" class="text-3xl font-bold text-slate-800">0</p><p class="text-gray-500 text-sm">Pending Tasks</p></div>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-2xl">✅</div>
+        <div><p id="stat-completed" class="text-3xl font-bold text-slate-800">0</p><p class="text-gray-500 text-sm">Completed Tasks</p></div>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-2xl">📈</div>
+        <div><p id="stat-avg-grade" class="text-3xl font-bold text-slate-800">91%</p><p class="text-gray-500 text-sm">Avg. Grade</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-8 pb-10">
+    <div id="courses-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+      </div>
+  </section>
+
+  <div id="add-course-trigger" class="max-w-7xl mx-auto px-8 mb-20 cursor-pointer">
+    <div class="w-full h-40 rounded-3xl border-2 border-dashed border-teal-200 bg-teal-50/30 flex flex-col items-center justify-center hover:border-teal-400 transition">
+      <span class="text-4xl text-teal-500">+</span>
+      <p class="text-lg font-medium">Add New Course</p>
+    </div>
+  </div>
+
+  <div id="course-modal" class="fixed inset-0 bg-black/60 hidden z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl">
+      <h2 class="text-2xl font-bold text-teal-600 mb-6">New Course</h2>
+      <div class="space-y-4">
+        <input type="text" id="new-course-name" placeholder="Course Name" class="w-full p-3 border rounded-xl outline-none focus:border-teal-500">
+        <input type="text" id="new-course-instructor" placeholder="Instructor Name" class="w-full p-3 border rounded-xl outline-none focus:border-teal-500">
+        <input type="number" id="new-course-progress" placeholder="Progress %" class="w-full p-3 border rounded-xl outline-none focus:border-teal-500">
+        <div class="flex gap-3 pt-4">
+          <button id="close-course-modal" class="flex-1 py-3 bg-gray-100 rounded-xl">Cancel</button>
+          <button id="save-course-btn" class="flex-1 py-3 bg-teal-500 text-white rounded-xl font-bold">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="task-modal" class="fixed inset-0 bg-black/60 hidden z-[110] flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-8 shadow-2xl overflow-y-auto max-h-[95vh]">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">Create New Task</h2>
+        <button id="close-task-modal" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+      </div>
+      <div class="space-y-5">
+        <input type="text" id="task-name" placeholder="Task Name" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-teal-400">
+        <textarea id="task-desc" rows="3" placeholder="Description" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-teal-400"></textarea>
+        <div class="grid grid-cols-2 gap-4">
+          <input type="date" id="task-date" class="w-full p-3 border rounded-xl">
+          <input type="text" id="task-time" placeholder="Time (e.g. 15 min)" class="w-full p-3 border rounded-xl">
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1 text-gray-600">Course / Subject Tag</label>
+          <select id="task-course" class="w-full p-3 border rounded-xl bg-white"></select>
+        </div>
+        <div class="flex justify-between items-center pt-5 border-t">
+          <button id="cancel-task-btn" class="text-gray-500 hover:underline">Cancel</button>
+          <button id="save-task-btn" class="bg-teal-500 text-white px-8 py-3 rounded-xl font-semibold shadow-md active:scale-95">💾 Save Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../src/database/database-logic.js"></script>
+</body>
+</html>

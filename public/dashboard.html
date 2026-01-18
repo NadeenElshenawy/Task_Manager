@@ -1,39 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Task Manager - Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskMaster Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <input type="text" id="taskName" placeholder="Task Title">
-    
-    <button id="saveTaskButton">Add Task</button>
 
-    <script type="module">
-        // بنعمل import للدالة من الملف اللي كتبنا فيه الـ logic
-        import { createNewTask } from "../src/database/database-logic.js";
+<body class="min-h-screen bg-gradient-to-br from-cyan-100 via-cyan-50 to-white font-sans text-slate-800">
 
-        // بنضيف الـ Listener للزرار
-        document.getElementById("saveTaskButton").addEventListener("click", async () => {
-            const taskNameInput = document.getElementById("taskName").value;
-            
-            if(!taskNameInput) {
-                alert("Please enter a task name");
-                return;
-            }
+<header class="bg-white/70 backdrop-blur border-b">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-full border-4 border-teal-500"></div>
+      <span class="font-semibold">TaskMaster</span>
+    </div>
+    <nav class="flex items-center gap-6 text-sm">
+      <a class="text-teal-600 font-medium" href="Dashboard.html">Dashboard</a>
+      <a class="text-slate-500" href="Courses Page UI.html">Courses</a>
+      <span>⚙️</span>
+      <span class="relative">🔔<span class="absolute -top-1 -right-1 w-2 h-2 bg-orange-500 rounded-full"></span></span>
+    </nav>
+  </div>
+</header>
 
-            const newTask = {
-                name: taskNameInput,
-                priority: "High", 
-                dueDate: "2025-01-01",
-                courseId: "math101"
-            };
-            
-            await createNewTask(newTask);
-            alert("Task Added Successfully!");
-            
-            // مسح الخانة بعد الإضافة
-            document.getElementById("taskName").value = "";
-        });
-    </script>
+<main class="max-w-7xl mx-auto px-6 py-8">
+
+<section class="bg-cyan-50 rounded-2xl p-8">
+  <h1 class="text-3xl font-semibold">Hi, Sarah! 👋</h1>
+  <p id="greeting-text" class="text-slate-600 mt-1">Ready to conquer today? You have tasks due today.</p>
+
+  <div class="mt-6 flex gap-3">
+    <input id="quick-task-input" class="flex-1 px-5 py-4 rounded-xl border focus:ring-2 focus:ring-teal-400 outline-none" placeholder="Quick add a task... (e.g., 'Finish chemistry homework')" />
+    <button id="quick-add-btn" class="px-6 py-4 bg-teal-500 text-white rounded-xl hover:bg-teal-600">+ Add Task</button>
+  </div>
+</section>
+
+<section class="grid grid-cols-3 gap-8 mb-12 mt-8">
+
+  <div class="bg-white rounded-2xl shadow p-6">
+    <h2 class="font-semibold text-slate-700 mb-4">Upcoming Deadlines</h2>
+    <div id="upcoming-list" class="space-y-4">
+      </div>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="font-semibold text-slate-700">Today's Focus</h2>
+      <span id="today-count-badge" class="text-xs bg-teal-100 text-teal-600 px-3 py-1 rounded-full">0 tasks</span>
+    </div>
+    <div id="today-list" class="space-y-4">
+      </div>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow p-6">
+    <h1 class="font-semibold text-slate-700 mb-4">This Week</h1>
+    <div class="space-y-2">
+        <div class="p-5 rounded-lg border border-slate-200 text-sm text-slate-500">Mon · 0 tasks</div>
+        <div class="bg-teal-500 text-white rounded-xl px-4 py-2 flex justify-between items-center">
+          <span>Tue · Today</span>
+          <span class="text-[10px] bg-white/30 px-2 py-1 rounded-full">Current</span>
+        </div>
+        <div class="p-5 rounded-lg border border-slate-200 text-sm text-slate-500">Wed · 0 tasks</div>
+        <div class="p-5 rounded-lg border border-slate-200 text-sm text-slate-500">Thu · 0 tasks</div>
+        <div class="p-5 rounded-lg border border-slate-200 text-sm text-slate-500">Fri · 0 tasks</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl p-6 text-white w-1/3 mb-12">
+  <h3 class="font-semibold mb-2">This Week’s Progress</h3>
+  <p class="text-sm mb-3">Tasks Completed <span id="progress-text" class="float-right">0/0</span></p>
+  <div class="h-2 bg-white/20 rounded-full">
+    <div id="progress-bar-fill" class="h-2 bg-white rounded-full transition-all" style="width: 0%"></div>
+  </div>
+  <button class="mt-4 text-sm underline" onclick="window.location.href='Courses Page UI.html'">View all courses →</button>
+</div>
+
+<section class="mt-12">
+  <h2 class="text-lg font-semibold mb-4">Active Courses</h2>
+  <div id="active-courses-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    </div>
+</section>
+
+</main>
+<script type="module" src="../src/database/dashboard-logic.js"></script>
 </body>
 </html>
