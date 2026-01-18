@@ -7,22 +7,35 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-cyan-100 via-cyan-50 to-white font-sans text-slate-800">
+<body class="bg-gradient-to-br from-cyan-50 to-white min-h-screen text-gray-800">
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-teal-600 font-bold text-xl">
+        <span class="w-8 h-8 rounded-full border-2 border-teal-500 flex items-center justify-center">◎</span>
+        TaskMaster
+      </div>
+      <!-- nav bar -->
+      <div class="flex items-center gap-8 text-gray-600 font-medium">
+        <a href="landing_page.html" class="text-teal-600 font-semibold">landing</a>
+        <a href="dashboard.html" class="hover:text-teal-600">Dashboard</a>
+        <a href="Courses Page UI.html" class="text-teal-600 font-semibold">Courses</a>
+        
+      </div>
+    <!-- Icons -->
+<div class="flex items-center gap-4 text-xl">
 
-<header class="bg-white/70 backdrop-blur border-b">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center gap-2">
-      <div class="w-7 h-7 rounded-full border-4 border-teal-500"></div>
-      <span class="font-semibold">TaskMaster</span>
-    </div>
-    <nav class="flex items-center gap-6 text-sm">
-      <a class="text-teal-600 font-medium" href="Dashboard.html">Dashboard</a>
-      <a class="text-slate-500" href="Courses Page UI.html">Courses</a>
-      <span>⚙️</span>
-      <span class="relative">🔔<span class="absolute -top-1 -right-1 w-2 h-2 bg-orange-500 rounded-full"></span></span>
-    </nav>
-  </div>
-</header>
+  <!-- Settings icon -->
+  <a href="account.html" class="cursor-pointer">
+    ⚙️
+  </a>
+
+  <!-- Notification icon -->
+  <a href="account.html#notifications" class="cursor-pointer">
+    🔔
+  </a>
+
+</div>
+  </nav>
 
 <main class="max-w-7xl mx-auto px-6 py-8">
 

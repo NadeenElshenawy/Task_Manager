@@ -26,20 +26,35 @@
         .nav-btn { transition: all 0.2s ease-in-out; }
     </style>
 </head>
-<body class="bg-[#f0f9f9] text-gray-700 min-h-screen">
+<body class="bg-gradient-to-br from-cyan-50 to-white min-h-screen text-gray-800">
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-teal-600 font-bold text-xl">
+        <span class="w-8 h-8 rounded-full border-2 border-teal-500 flex items-center justify-center">◎</span>
+        TaskMaster
+      </div>
+      <!-- nav bar -->
+      <div class="flex items-center gap-8 text-gray-600 font-medium">
+        <a href="landing_page.html" class="text-teal-600 font-semibold">landing</a>
+        <a href="dashboard.html" class="hover:text-teal-600">Dashboard</a>
+        <a href="Courses Page UI.html" class="text-teal-600 font-semibold">Courses</a>
+        
+      </div>
+    <!-- Icons -->
+<div class="flex items-center gap-4 text-xl">
 
-    <header class="flex items-center justify-between px-12 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
-        <div class="flex items-center gap-2 text-[#00a8a8] font-bold text-xl">
-            <div class="w-7 h-7 rounded-full border-4 border-[#00a8a8]"></div>
-            TaskMaster
-        </div>
-        <div class="flex items-center gap-8 text-sm font-medium text-gray-500">
-            <a href="Dashboard.html" class="hover:text-[#00a8a8] transition-colors">Dashboard</a>
-            <a href="Courses.html" class="hover:text-[#00a8a8] transition-colors">Courses</a>
-            <button class="text-[#00a8a8]">⚙️</button>
-            <button class="hover:text-[#00a8a8]">🔔</button>
-        </div>
-    </header>
+  <!-- Settings icon -->
+  <a href="account.html" class="cursor-pointer">
+    ⚙️
+  </a>
+
+  <!-- Notification icon -->
+  <a href="account.html#notifications" class="cursor-pointer">
+    🔔
+  </a>
+
+</div>
+  </nav>
 
     <main class="max-w-6xl mx-auto mt-10 px-8">
         <a href="Dashboard.html" class="flex items-center text-xs text-gray-400 mb-6 hover:text-gray-600 transition-colors">
@@ -178,6 +193,13 @@
                 reader.readAsDataURL(file);
             }
         }
+
+  // بيدخل ع مسدجات ع طول
+  window.addEventListener("load", () => {
+    if (window.location.hash === "#notifications") {
+      showSection("notifications");
+    }
+  });
 
         // معالجة نموذج حفظ التغييرات
         document.getElementById('accountForm').addEventListener('submit', function(e) {

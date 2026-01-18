@@ -24,31 +24,57 @@
     }
   </style>
 </head>
-<body class="min-h-screen font-sans text-gray-800" id="bg">
+<body class="bg-gradient-to-br from-cyan-50 to-white min-h-screen text-gray-800">
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-teal-600 font-bold text-xl">
+        <span class="w-8 h-8 rounded-full border-2 border-teal-500 flex items-center justify-center">◎</span>
+        TaskMaster
+      </div>
+      <!-- nav bar -->
+      <div class="flex items-center gap-8 text-gray-600 font-medium">
+        <a href="landing_page.html" class="text-teal-600 font-semibold">landing</a>
+        <a href="dashboard.html" class="hover:text-teal-600">Dashboard</a>
+        <a href="Courses Page UI.html" class="text-teal-600 font-semibold">Courses</a>
+        
+      </div>
+    <!-- Icons -->
+<div class="flex items-center gap-4 text-xl">
 
-<!-- NAVBAR -->
-<nav class="flex items-center justify-between px-10 py-6">
-  <div class="flex items-center gap-2 text-xl font-semibold text-primary">
-    <span class="w-8 h-8 rounded-full border-4 border-primary"></span>
-    TaskMaster
-  </div>
-  <button class="px-5 py-2 rounded-full border border-gray-300 hover:bg-gray-100">Sign In</button>
-</nav>
+  <!-- Settings icon -->
+  <a href="account.html" class="cursor-pointer">
+    ⚙️
+  </a>
 
-<!-- LANDING PAGE -->
+  <!-- Notification icon -->
+  <a href="account.html#notifications" class="cursor-pointer">
+    🔔
+  </a>
+
+</div>
+  </nav>
+
+
+<!-- ================= LANDING ================= -->
 <section class="flex flex-col items-center text-center mt-20 px-6">
   <h1 class="text-5xl font-bold max-w-4xl">
     Ace Your Semester:<br />
     <span class="text-primary">The Ultimate Student Planner</span>
   </h1>
+
   <p class="mt-6 max-w-2xl text-lg text-gray-600">
     Stay organized, reduce stress, and achieve your academic goals with a task manager designed specifically for students.
   </p>
+
   <div class="mt-10 flex gap-4">
-    <button class="px-8 py-3 rounded-full bg-primary text-white hover:bg-teal-600">Get Started</button>
-    <button class="px-8 py-3 rounded-full border border-primary text-primary hover:bg-primary hover:text-white">View Dashboard</button>
+    <button class="px-8 py-3 rounded-full bg-primary text-white hover:bg-teal-600">
+      Get Started
+    </button>
+    <a href="dashboard.html"><button class="px-8 py-3 rounded-full border border-primary text-primary hover:bg-primary hover:text-white"> View Dashboard</button></a>
   </div>
 </section>
+
+
 
 <!-- FEATURES -->
 <section class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-24 px-6">
@@ -141,7 +167,7 @@
   </div>
   
   <div class="text-center mt-12">
-    <button class="px-8 py-3 rounded-full bg-white text-primary font-semibold hover:bg-gray-100">Start Planning Today</button>
+    <a href="Courses Page UI.html"><button class="px-8 py-3 rounded-full bg-white text-primary font-semibold hover:bg-gray-100">Start Planning Today</button></a>
   </div>
 </section>
 
