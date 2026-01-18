@@ -1,7 +1,8 @@
-import { db } from "../firebase/firebase-config.js";
+import { db, auth } from "../firebase/firebase-config.js";
 import { 
-    collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp 
+    collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, where 
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
 const coursesContainer = document.getElementById('courses-container');
 const courseModal = document.getElementById('course-modal');
@@ -14,26 +15,34 @@ const updateHeaderStats = (coursesCount, pendingCount, completedCount) => {
     if(document.getElementById('stat-completed')) document.getElementById('stat-completed').innerText = completedCount;
 };
 
-// --- 2. عرض الكورسات مع إحصائيات Active/Done حقيقية ---
-const loadCourses = async () => {
-    if (!coursesContainer) return;
+// --- 2. عرض الكورسات الخاصة بالمستخدم الحالي فقط ---
+const loadCourses = async (user) => {
+    if (!coursesContainer || !user) return;
     try {
-        const coursesSnap = await getDocs(collection(db, "courses"));
-        const tasksSnap = await getDocs(collection(db, "tasks"));
+        // فلترة الكورسات حسب UID المستخدم الحالي
+        const coursesQuery = query(collection(db, "courses"), where("userId", "==", user.uid));
+        const coursesSnap = await getDocs(coursesQuery);
+        
+        // فلترة التاسكات حسب UID المستخدم الحالي
+        const tasksQuery = query(collection(db, "tasks"), where("userId", "==", user.uid));
+        const tasksSnap = await getDocs(tasksQuery);
         const allTasks = tasksSnap.docs.map(d => ({id: d.id, ...d.data()}));
 
         coursesContainer.innerHTML = "";
         
-        // إحصائيات عامة للهيدر
         const totalPending = allTasks.filter(t => t.status === "pending").length;
         const totalCompleted = allTasks.filter(t => t.status === "completed").length;
         updateHeaderStats(coursesSnap.size, totalPending, totalCompleted);
+
+        if (coursesSnap.empty) {
+            coursesContainer.innerHTML = `<p class="col-span-full text-center text-gray-400 py-10">No courses yet.</p>`;
+            return;
+        }
 
         coursesSnap.forEach((courseDoc) => {
             const course = courseDoc.data();
             const id = courseDoc.id;
 
-            // حساب أرقام التاسكات لهذا الكورس
             const courseTasks = allTasks.filter(t => t.courseId === id);
             const activeCount = courseTasks.filter(t => t.status === "pending").length;
             const doneCount = courseTasks.filter(t => t.status === "completed").length;
@@ -69,8 +78,9 @@ const loadCourses = async () => {
                         </div>
 
                         <div class="flex gap-4">
-                            <button class="flex-1 py-4 bg-gray-50 text-slate-600 rounded-2xl font-bold text-sm hover:bg-gray-100">View Tasks</button>
-                            <button onclick="window.openTaskModal('${id}', '${course.name}')" 
+<button onclick="window.location.href='dashboard.html?courseId=${id}'" 
+        class="flex-1 py-4 bg-gray-50 text-slate-600 rounded-2xl font-bold text-sm hover:bg-gray-100">
+    View Tasks                              <button onclick="window.openTaskModal('${id}', '${course.name}')" 
                                     class="w-14 h-14 bg-teal-400 text-white rounded-2xl flex items-center justify-center text-2xl hover:bg-teal-500 shadow-lg shadow-teal-100 transition-all active:scale-90">+</button>
                         </div>
                     </div>
@@ -80,11 +90,11 @@ const loadCourses = async () => {
     } catch (e) { console.error(e); }
 };
 
-// --- 3. إدارة الإجراءات (حذف، فتح، حفظ) ---
+// --- 3. إدارة الإجراءات ---
 window.deleteCourse = async (id) => {
     if(confirm("Delete this course and its stats?")) {
         await deleteDoc(doc(db, "courses", id));
-        loadCourses();
+        loadCourses(auth.currentUser);
     }
 };
 
@@ -99,13 +109,17 @@ document.getElementById('save-course-btn').onclick = async () => {
     const progress = document.getElementById('new-course-progress').value;
     const colors = ['#10b981', '#3b82f6', '#f43f5e', '#f97316'];
     
+    // إضافة حقل userId لربط الكورس بالمستخدم
     await addDoc(collection(db, "courses"), {
-        name, instructor, progress: parseInt(progress) || 0,
+        name, instructor, 
+        progress: parseInt(progress) || 0,
+        userId: auth.currentUser.uid, 
         color: colors[Math.floor(Math.random() * colors.length)],
-        grade: "A", createdAt: serverTimestamp()
+        grade: "A", 
+        createdAt: serverTimestamp()
     });
     courseModal.classList.add('hidden');
-    loadCourses();
+    loadCourses(auth.currentUser);
 };
 
 document.getElementById('save-task-btn').onclick = async () => {
@@ -113,20 +127,29 @@ document.getElementById('save-task-btn').onclick = async () => {
     const courseId = document.getElementById('task-course').value;
     if(!title || !courseId) return alert("Fill required fields");
 
+    // إضافة حقل userId لربط التاسك بالمستخدم
     await addDoc(collection(db, "tasks"), {
-        title, courseId, status: "pending", 
+        title, courseId, 
+        status: "pending", 
+        userId: auth.currentUser.uid,
         dueDate: document.getElementById('task-date').value,
         createdAt: serverTimestamp()
     });
     taskModal.classList.add('hidden');
-    loadCourses(); // لتحديث العداد داخل الكارت فوراً
+    loadCourses(auth.currentUser);
 };
 
-// البدء عند التحميل
-document.addEventListener('DOMContentLoaded', () => {
-    loadCourses();
-    document.getElementById('add-course-trigger').onclick = () => courseModal.classList.remove('hidden');
-    document.getElementById('close-course-modal').onclick = () => courseModal.classList.add('hidden');
-    document.getElementById('close-task-modal').onclick = () => taskModal.classList.add('hidden');
-    document.getElementById('cancel-task-btn').onclick = () => taskModal.classList.add('hidden');
+// --- 4. مراقبة حالة المستخدم وتشغيل الصفحة ---
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        loadCourses(user);
+    } else {
+        window.location.href = "sign-in.html";
+    }
 });
+
+// إعدادات الـ Modal
+document.getElementById('add-course-trigger').onclick = () => courseModal.classList.remove('hidden');
+document.getElementById('close-course-modal').onclick = () => courseModal.classList.add('hidden');
+document.getElementById('close-task-modal').onclick = () => taskModal.classList.add('hidden');
+document.getElementById('cancel-task-btn').onclick = () => taskModal.classList.add('hidden');
