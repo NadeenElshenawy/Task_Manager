@@ -1,5 +1,4 @@
-console.log("تم تحميل ملف الـ JS بنجاح!");
-alert("الملف يعمل!");
+
 import { auth, db } from "../firebase/firebase-config.js";
 import { 
     createUserWithEmailAndPassword, 
