@@ -23,15 +23,21 @@
       transition: background-position 0.1s linear;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body class="bg-gradient-to-br from-cyan-50 to-white min-h-screen text-gray-800">
   <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
     <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-2 text-teal-600 font-bold text-xl">
-        <span class="w-8 h-8 rounded-full border-2 border-teal-500 flex items-center justify-center">◎</span>
-        TaskMaster
-      </div>
-      <!-- nav bar -->
+      <div class="flex items-center gap-2">
+  <div class="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center">
+    <i class="fas fa-bullseye text-white text-sm"></i>
+  </div>
+  <span class="text-xl font-bold text-slate-800 tracking-tight text-teal-600">
+    TaskMaster
+  </span>
+</div>
+<!-- nav bar -->
       <div class="flex items-center gap-8 text-gray-600 font-medium">
         <a href="landing_page.html" class="text-teal-600 font-semibold">landing</a>
         <a href="dashboard.html" class="hover:text-teal-600">Dashboard</a>
@@ -104,31 +110,6 @@
   </div>
 </section>
 
-<!-- DASHBOARD PREVIEW -->
-<!-- <section class="max-w-6xl mx-auto mt-28 px-6">
-  <h2 class="text-3xl font-bold mb-6">Dashboard</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-white rounded-2xl p-5 shadow">
-      <h4 class="font-semibold mb-2">Upcoming Deadlines</h4>
-      <ul class="text-sm text-gray-600 space-y-1">
-        <li>📘 Math Assignment – Tomorrow</li>
-        <li>🧪 Physics Quiz – Friday</li>
-        <li>💻 CS Project – Sunday</li>
-      </ul>
-    </div>
-    <div class="bg-white rounded-2xl p-5 shadow">
-      <h4 class="font-semibold mb-2">Today's Focus</h4>
-      <p class="text-gray-600">Finish calculus homework and review lecture notes.</p>
-    </div>
-    <div class="bg-white rounded-2xl p-5 shadow">
-      <h4 class="font-semibold mb-2">Weekly Progress</h4>
-      <div class="w-full bg-gray-200 rounded-full h-3">
-        <div class="bg-primary h-3 rounded-full" style="width: 65%"></div>
-      </div>
-      <p class="text-sm mt-2 text-gray-500">65% tasks completed</p>
-    </div>
-  </div>
-</section> -->
 <section class="max-w-6xl mx-auto mt-28 px-6 p-12 rounded-3xl text-white" 
          style="background: linear-gradient(to right, #2dd4bf, #06b6d4);">
   <h2 class="text-3xl font-bold mb-10 text-center">Why Students Love TaskMaster</h2>
