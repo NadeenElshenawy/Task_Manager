@@ -2,9 +2,8 @@
 import { auth, db } from "../firebase/firebase-config.js";
 import { 
     createUserWithEmailAndPassword, 
-    GoogleAuthProvider, 
-    signInWithRedirect, 
-    getRedirectResult 
+    GoogleAuthProvider,
+    signInWithPopup 
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
@@ -50,37 +49,29 @@ if (googleBtn) {
     googleBtn.onclick = () => {
         const provider = new GoogleAuthProvider();
         // استخدام Redirect بدلاً من Popup لتجنب انغلاق النافذة المفاجئ
-        signInWithRedirect(auth, provider);
+        signInWithPopup(auth, provider)
+        .then(async(result)=>{
+            if(result && result.user){
+                const user = result.user;
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if(!userDoc.exists()){
+                    await setDoc(doc(db, "users", user.uid), {
+                        fullName: user.displayName,
+                        email: user.email,
+                        university: "Not Specified",
+                        createdAt: new Date().toISOString(),
+                        uid: user.uid,
+                        authMethod: "google"
+                    });
+                }
+                window.location.href = "dashboard.html";
+            }
+        })
+        .catch((err) => {console.log(err)});
     };
 }
 
-// --- 3. معالجة النتيجة بعد العودة من جوجل ---
-// هذا الكود يعمل تلقائياً عند عودة المتصفح من صفحة جوجل إلى موقعك
-getRedirectResult(auth)
-    .then(async (result) => {
-        if (result && result.user) {
-            const user = result.user;
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            
-            if (!userDoc.exists()) {
-                await setDoc(doc(db, "users", user.uid), {
-                    fullName: user.displayName,
-                    email: user.email,
-                    university: "Not Specified",
-                    createdAt: new Date().toISOString(),
-                    uid: user.uid,
-                    authMethod: "google"
-                });
-            }
-            window.location.href = "dashboard.html";
-        }
-    })
-    .catch((error) => {
-        console.error("Redirect Error:", error);
-        if (error.code !== 'auth/redirect-cancelled-by-user') {
-            alert("حدث خطأ أثناء العودة من جوجل: " + error.message);
-        }
-    });
+
 
 // دالة مساعدة لمعالجة الأخطاء
 function handleAuthError(error) {

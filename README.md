@@ -1,34 +1,95 @@
-# Task Manager Project
 
-## 📌 Description
-A task management web application built by:
-- Nadeen (Authentication + Project structure)
-- Nada (UI Pages: Home, About, Contact)
-- Shahd (Tasks System)
+🚀 TaskMaster - Student Productivity Hub
 
-## 📁 Project Structure
-- index.html  
-- css/style.css  
-- js/auth.js  
-- js/tasks.js  
-- js/main.js  
+TaskMaster is a modern web application designed specifically for students to help them organize academic tasks, track course progress, and manage their schedules efficiently using integrated Firebase technologies.
 
-## 🛠️ Technologies
-- HTML, CSS, JavaScript  
-- (React if used)
+ 📱 Project Overview
 
-## 🚀 How to Run
-1. Clone the repo  
-2. Open the folder  
-3. Run using Live Server / npm start  
+The project features a sleek, user-centric UI built for productivity:
 
-## 🌱 Branch Workflow
-- main → final version  
-- dev → development  
-- nadeen → authentication  
-- nada → UI  
-- shahd → tasks  
+* Dashboard: A comprehensive view of daily progress, today's focus, and upcoming deadlines.
+* Course Management: Visual cards for each subject displaying current grades, instructors, and task counts.
+* Authentication System: Secure and stylish Sign-In and Sign-Up pages.
 
-## 🔐 Rules
-- No one pushes to main  
-- Pull requests required  
+
+🛠 Tech Stack
+
+* Frontend: HTML5, Tailwind CSS (for modern, responsive styling).
+* Icons: Font Awesome.
+* Backend & Database (Firebase):
+* Firebase Authentication: Secure user access (Email/Password & Google Login integration).
+* Cloud Firestore: Real-time NoSQL database for storing user profiles, courses, and tasks.
+
+
+ Development Tools: VS Code, Live Server, Git/GitHub.
+
+📂 Project Structure
+
+
+Task_Manager/
+├── public/                 # Frontend files
+│   ├── assets/             # Images and media
+│   ├── dashboard.html      # Main user dashboard
+│   ├── sign-in.html        # Login page
+│   ├── sign-up.html        # Account creation page
+│   └── tasks.html          # Detailed task management
+├── src/                    # Logic and Backend integration
+│   ├── database/           
+│   │   ├── auth.js         # Login and Google Auth logic
+│   │   ├── sign-up.js      # User registration and Firestore profile creation
+│   │   └── dashboard-logic.js # Dynamic data fetching and UI updates
+│   └── firebase/
+│       └── firebase-config.js # Firebase SDK initialization
+└── package.json            # Project dependencies
+
+
+
+🌟 Key Features
+
+1. Personalized Profiles: Unique accounts for every student storing name and university data.
+2. Course Tracking: Interactive cards displaying instructors, grades, and completion percentages.
+3. Quick Add: A streamlined feature to add tasks instantly from the dashboard.
+4. Real-time Sync: Instant UI updates when tasks are marked as "Done" via Firestore listeners.
+5. Multi-Auth Support: Flexible login options via Email or Google.
+
+---
+
+⚙️ Setup and Installation
+
+1. Firebase Configuration:
+* Create a project in the [Firebase Console](https://console.firebase.google.com/).
+* Enable Authentication (Email/Password & Google).
+* Create a Firestore Database in Test Mode.
+
+
+2. Code Setup:
+* Clone the repository.
+* Update src/firebase/firebase-config.js with your specific Firebase API keys.
+
+
+3. Run Locally:
+* Open the project folder in VS Code.
+* Launch public/landing_page.html using the Live Server extension.
+
+
+👥 Contributors & Contributions
+
+Nadeen Samy – Lead Developer
+• UI Design
+• Firebase Integration
+• Backend Logic
+
+Shahd Ashraf – UI/UX Designer
+• Designed Dashboard, Sign-In, Sign-Up, and Add Task pages
+
+Nada Ebrahiem – Frontend Developer
+• Developed Landing Page and Courses pages
+• Ensured UI consistency 
+• Implemented button linking and navigation
+
+
+📝 License:
+
+This project was developed for academic purposes as part of a [Web Development Course under supervision of Dr.Ashraf Taha Abdel Aziz ]
+
+
