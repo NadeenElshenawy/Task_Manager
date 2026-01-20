@@ -27,20 +27,23 @@ The project features a sleek, user-centric UI built for productivity:
 
 
 Task_Manager/
-├── public/                 # Frontend files
-│   ├── assets/             # Images and media
-│   ├── dashboard.html      # Main user dashboard
-│   ├── sign-in.html        # Login page
-│   ├── sign-up.html        # Account creation page
-│   └── tasks.html          # Detailed task management
-├── src/                    # Logic and Backend integration
-│   ├── database/           
-│   │   ├── auth.js         # Login and Google Auth logic
-│   │   ├── sign-up.js      # User registration and Firestore profile creation
-│   │   └── dashboard-logic.js # Dynamic data fetching and UI updates
+├── public/
+│   ├── assets/                 # Images and media files
+│   ├── dashboard.html          # Main user dashboard
+│   ├── sign-in.html            # Login page
+│   ├── sign-up.html            # Account creation page
+│   └── tasks.html              # Task management page
+│
+├── src/
+│   ├── database/
+│   │   ├── auth.js             # Authentication logic (Email & Google)
+│   │   ├── sign-up.js          # User registration & Firestore profile setup
+│   │   └── dashboard-logic.js  # Dynamic data fetching and UI updates
+│   │
 │   └── firebase/
-│       └── firebase-config.js # Firebase SDK initialization
-└── package.json            # Project dependencies
+│       └── firebase-config.js  # Firebase SDK initialization
+│
+└── package.json                # Project dependencies and scripts
 
 
 
