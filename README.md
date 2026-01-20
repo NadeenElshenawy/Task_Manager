@@ -25,27 +25,34 @@ The project features a sleek, user-centric UI built for productivity:
 
 📂 Project Structure
 
+📁 Public (Frontend)
 
-Task_Manager/
-├── public/
-│   ├── assets/                 # Images and media files
-│   ├── dashboard.html          # Main user dashboard
-│   ├── sign-in.html            # Login page
-│   ├── sign-up.html            # Account creation page
-│   └── tasks.html              # Task management page
-│
-├── src/
-│   ├── database/
-│   │   ├── auth.js             # Authentication logic (Email & Google)
-│   │   ├── sign-up.js          # User registration & Firestore profile setup
-│   │   └── dashboard-logic.js  # Dynamic data fetching and UI updates
-│   │
-│   └── firebase/
-│       └── firebase-config.js  # Firebase SDK initialization
-│
-└── package.json                # Project dependencies and scripts
+assets/: images and media files
 
+dashboard.html: main user dashboard
 
+sign-in.html: login page
+
+sign-up.html: account creation page
+
+tasks.html: task management page
+
+📁 Source (Logic & Backend Integration)
+Database
+
+auth.js: authentication logic (email & Google)
+
+sign-up.js: user registration & Firestore profile creation
+
+dashboard-logic.js: dynamic data fetching and UI updates
+
+Firebase
+
+firebase-config.js: Firebase SDK initialization
+
+📦 Configuration
+
+package.json: project dependencies and scripts
 
 🌟 Key Features
 
