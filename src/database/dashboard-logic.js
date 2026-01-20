@@ -5,7 +5,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
-// --- 1. دالة لإضافة إشعار محلي ---
 const createNotification = (title, message) => {
     let notifications = JSON.parse(localStorage.getItem('taskNotifications') || '[]');
     notifications.unshift({
@@ -20,19 +19,15 @@ const createNotification = (title, message) => {
     if (bell) bell.classList.add('has-new');
 };
 
-// --- 2. دالة المزامنة الرئيسية (تم دمج إحصائيات الأسبوع هنا) ---
 const syncDashboard = (user) => {
-    // مراقبة المهام لحظياً
     const tasksQuery = query(
         collection(db, "tasks"), 
         where("userId", "==", user.uid)
     );
 
-    // هذا هو المكان الصحيح لـ onSnapshot
     onSnapshot(tasksQuery, (tasksSnap) => {
         const allTasks = tasksSnap.docs.map(d => ({ id: d.id, ...d.data() }));
         
-        // جلب الكورسات (يمكنك استخدام onSnapshot هنا أيضاً إذا أردتِ استجابة أسرع لتغييرات الكورسات)
         const coursesQuery = query(
             collection(db, "courses"), 
             where("userId", "==", user.uid)
@@ -41,11 +36,10 @@ const syncDashboard = (user) => {
         getDocs(coursesQuery).then(coursesSnap => {
             const allCourses = coursesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
             
-            // تحديث جميع عناصر الواجهة فور حدوث أي تغيير في Firestore
             updateProgress(allTasks);
             updateTodayFocus(allTasks);
             updateUpcoming(allTasks);
-            updateWeeklyStats(allTasks); // <--- تم إضافة الربط هنا ليصبح قسم الأسبوع ديناميكياً
+            updateWeeklyStats(allTasks); 
             updateActiveCourses(allCourses, allTasks);
         });
     }, (error) => {
@@ -53,12 +47,11 @@ const syncDashboard = (user) => {
     });
 };
 
-// --- 3. حماية الصفحة وتحديث البيانات ---
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         try {
             const userDocSnap = await getDoc(doc(db, "users", user.uid));
-            const greetingElement = document.getElementById('greeting-text'); // تأكدي من الـ ID في HTML
+            const greetingElement = document.getElementById('greeting-text'); 
             const h1Element = document.querySelector('h1');
 
             if (userDocSnap.exists() && h1Element) {
@@ -75,7 +68,6 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-// --- 4. إضافة مهمة سريعة (تم تصحيح المتغيرات المفقودة) ---
 const quickAddBtn = document.getElementById('quick-add-btn');
 const quickInput = document.getElementById('quick-task-input');
 
@@ -86,23 +78,22 @@ if (quickAddBtn) {
 
         try {
             await addDoc(collection(db, "tasks"), {
-                title: taskTitle, // تم تصحيح الاسم هنا
-                courseId: "general", // افتراضي للمهام السريعة
+                title: taskTitle, 
+                courseId: "general", 
                 status: "pending", 
                 userId: auth.currentUser.uid,
-                dueDate: new Date().toISOString().split('T')[0], // وضع تاريخ اليوم تلقائياً للمهام السريعة
+                dueDate: new Date().toISOString().split('T')[0], 
                 createdAt: serverTimestamp()
             }); 
             quickInput.value = "";
             createNotification("Task Added", `New task: ${taskTitle}`); 
-            // لا حاجة لاستدعاء syncDashboard يدوياً لأن onSnapshot سيكتشف الإضافة
+            
         } catch (e) { 
             console.error("Quick Add Error:", e); 
         }
     };
 }
 
-// --- 5. تحديث حالة المهمة ---
 window.toggleTaskStatus = async (taskId, currentStatus) => {
     const newStatus = currentStatus === "pending" ? "completed" : "pending";
     try {
@@ -118,7 +109,6 @@ window.toggleTaskStatus = async (taskId, currentStatus) => {
     }
 };
 
-// --- 6. الدوال المساعدة لتحديث واجهة المستخدم ---
 const updateProgress = (tasks) => {
     const progressBar = document.getElementById('progress-bar-fill');
     const progressText = document.getElementById('progress-text');
@@ -133,7 +123,6 @@ const updateProgress = (tasks) => {
 const updateTodayFocus = (tasks) => {
     const todayList = document.getElementById('today-list');
     const todayStr = new Date().toISOString().split('T')[0];
-    // فلترة المهام التي لم تكتمل وتاريخها اليوم
     const todayTasks = tasks.filter(t => t.dueDate === todayStr && t.status === "pending");
 
     if (todayList) {
@@ -171,7 +160,6 @@ const updateUpcoming = (tasks) => {
     const list = document.getElementById('upcoming-list');
     if (!list) return;
 
-    // فلترة المهام التي لم تكتمل فقط (pending)
     const upcoming = tasks.filter(t => t.status === "pending").slice(0, 3);
     
     list.innerHTML = upcoming.length > 0 ? upcoming.map(t => `
@@ -198,7 +186,6 @@ const updateWeeklyStats = (tasks) => {
     const today = new Date();
     let html = '';
 
-    // سنعرض 5 أيام (اليوم + 4 أيام قادمة)
     for (let i = 0; i < 5; i++) {
         const targetDate = new Date();
         targetDate.setDate(today.getDate() + i);
@@ -206,12 +193,10 @@ const updateWeeklyStats = (tasks) => {
         const dateString = targetDate.toISOString().split('T')[0]; // صيغة YYYY-MM-DD
         const dayLabel = daysName[targetDate.getDay()];
         
-        // حساب عدد المهام لهذا التاريخ
         const dailyCount = tasks.filter(t => t.dueDate === dateString).length;
         const isToday = i === 0;
 
         if (isToday) {
-            // تصميم اليوم الحالي (الأخضر)
             html += `
                 <div class="bg-teal-500 text-white rounded-xl px-4 py-3 flex justify-between items-center shadow-sm">
                     <span class="font-medium">${dayLabel} · Today</span>
@@ -221,7 +206,6 @@ const updateWeeklyStats = (tasks) => {
                     </div>
                 </div>`;
         } else {
-            // تصميم الأيام القادمة
             html += `
                 <div class="p-4 rounded-xl border border-slate-100 text-sm text-slate-500 flex justify-between items-center hover:bg-slate-50 transition-all">
                     <span class="font-medium">${dayLabel}</span>

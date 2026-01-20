@@ -8,22 +8,18 @@ const coursesContainer = document.getElementById('courses-container');
 const courseModal = document.getElementById('course-modal');
 const taskModal = document.getElementById('task-modal');
 
-// --- 1. تحديث الإحصائيات العلوية ---
 const updateHeaderStats = (coursesCount, pendingCount, completedCount) => {
     if(document.getElementById('stat-active-courses')) document.getElementById('stat-active-courses').innerText = coursesCount;
     if(document.getElementById('stat-pending')) document.getElementById('stat-pending').innerText = pendingCount;
     if(document.getElementById('stat-completed')) document.getElementById('stat-completed').innerText = completedCount;
 };
 
-// --- 2. عرض الكورسات الخاصة بالمستخدم الحالي فقط ---
 const loadCourses = async (user) => {
     if (!coursesContainer || !user) return;
     try {
-        // فلترة الكورسات حسب UID المستخدم الحالي
         const coursesQuery = query(collection(db, "courses"), where("userId", "==", user.uid));
         const coursesSnap = await getDocs(coursesQuery);
         
-        // فلترة التاسكات حسب UID المستخدم الحالي
         const tasksQuery = query(collection(db, "tasks"), where("userId", "==", user.uid));
         const tasksSnap = await getDocs(tasksQuery);
         const allTasks = tasksSnap.docs.map(d => ({id: d.id, ...d.data()}));
@@ -90,7 +86,6 @@ const loadCourses = async (user) => {
     } catch (e) { console.error(e); }
 };
 
-// --- 3. إدارة الإجراءات ---
 window.deleteCourse = async (id) => {
     if(confirm("Delete this course and its stats?")) {
         await deleteDoc(doc(db, "courses", id));
@@ -109,7 +104,6 @@ document.getElementById('save-course-btn').onclick = async () => {
     const progress = document.getElementById('new-course-progress').value;
     const colors = ['#10b981', '#3b82f6', '#f43f5e', '#f97316'];
     
-    // إضافة حقل userId لربط الكورس بالمستخدم
     await addDoc(collection(db, "courses"), {
         name, instructor, 
         progress: parseInt(progress) || 0,
@@ -127,7 +121,6 @@ document.getElementById('save-task-btn').onclick = async () => {
     const courseId = document.getElementById('task-course').value;
     if(!title || !courseId) return alert("Fill required fields");
 
-    // إضافة حقل userId لربط التاسك بالمستخدم
     await addDoc(collection(db, "tasks"), {
         title, courseId, 
         status: "pending", 
@@ -139,7 +132,6 @@ document.getElementById('save-task-btn').onclick = async () => {
     loadCourses(auth.currentUser);
 };
 
-// --- 4. مراقبة حالة المستخدم وتشغيل الصفحة ---
 onAuthStateChanged(auth, (user) => {
     if (user) {
         loadCourses(user);
@@ -148,7 +140,6 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// إعدادات الـ Modal
 document.getElementById('add-course-trigger').onclick = () => courseModal.classList.remove('hidden');
 document.getElementById('close-course-modal').onclick = () => courseModal.classList.add('hidden');
 document.getElementById('close-task-modal').onclick = () => taskModal.classList.add('hidden');

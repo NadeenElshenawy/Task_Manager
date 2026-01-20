@@ -13,6 +13,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// تأكدي من وجود كلمة export هنا
 export const auth = getAuth(app);
 export const db = getFirestore(app);

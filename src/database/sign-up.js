@@ -7,7 +7,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-// --- 1. التسجيل التقليدي (الإيميل والباسورد) ---
 const signupForm = document.getElementById('signupForm');
 if (signupForm) {
     signupForm.addEventListener('submit', async (e) => {
@@ -43,12 +42,10 @@ if (signupForm) {
     });
 }
 
-// --- 2. التسجيل بواسطة جوجل (Redirect Mode) ---
 const googleBtn = document.getElementById('googleSignupBtn');
 if (googleBtn) {
     googleBtn.onclick = () => {
         const provider = new GoogleAuthProvider();
-        // استخدام Redirect بدلاً من Popup لتجنب انغلاق النافذة المفاجئ
         signInWithPopup(auth, provider)
         .then(async(result)=>{
             if(result && result.user){
@@ -73,7 +70,6 @@ if (googleBtn) {
 
 
 
-// دالة مساعدة لمعالجة الأخطاء
 function handleAuthError(error) {
     if (error.code === 'auth/email-already-in-use') {
         alert("هذا البريد الإلكتروني مسجل بالفعل.");

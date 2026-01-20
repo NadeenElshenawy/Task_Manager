@@ -300,7 +300,6 @@
     </main>
 
     <script>
-      // 1. التنقل بين الأقسام
       function showSection(sectionId) {
         document
           .querySelectorAll(".settings-content")
@@ -320,7 +319,6 @@
         }
       }
 
-      // 2. نظام الـ Toast لإظهار التنبيهات
       function showToast(message) {
         const container = document.getElementById("toast-container");
         const toast = document.createElement("div");
@@ -331,16 +329,13 @@
         setTimeout(() => toast.remove(), 3000);
       }
 
-      // 3. وظيفة تسجيل الخروج
       function handleLogout() {
         if (confirm("Are you sure you want to logout?")) {
-          // await signOut(auth);
           alert("Logging out...");
           window.location.href = "landing_page.html";
         }
       }
 
-      // 4. حفظ تفضيلات الإشعارات
       function saveNotificationPrefs() {
         const settingsNotify =
           document.getElementById("notify-settings").checked;
@@ -359,7 +354,6 @@
         );
       }
 
-      // 5. معالجة حفظ بيانات الحساب
       document
         .getElementById("accountForm")
         .addEventListener("submit", function (e) {
@@ -379,7 +373,6 @@
           }, 800);
         });
 
-      // 6. تحميل التفضيلات
       window.addEventListener("load", () => {
         if (window.location.hash === "#notifications") {
           showSection("notifications");
@@ -391,7 +384,6 @@
           document.getElementById("notify-courses").checked = false;
       });
 
-      // 7. تغيير الصورة
       function triggerPhotoUpload() {
         document.getElementById("photoInput").click();
       }
