@@ -1,7 +1,7 @@
 import { db, auth } from "../firebase/firebase-config.js";
 import { 
     collection, addDoc, getDocs, doc, updateDoc, serverTimestamp, 
-    query, where, getDoc, onSnapshot // تم إضافة onSnapshot هنا
+    query, where, getDoc, onSnapshot 
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
@@ -190,7 +190,7 @@ const updateWeeklyStats = (tasks) => {
         const targetDate = new Date();
         targetDate.setDate(today.getDate() + i);
         
-        const dateString = targetDate.toISOString().split('T')[0]; // صيغة YYYY-MM-DD
+        const dateString = targetDate.toISOString().split('T')[0]; 
         const dayLabel = daysName[targetDate.getDay()];
         
         const dailyCount = tasks.filter(t => t.dueDate === dateString).length;
